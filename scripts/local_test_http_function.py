@@ -2,7 +2,7 @@ import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
 from iotfunctions import bif
-from custom.functions import WeatherHTTPPreload
+from ai.functions import SimpleAnomaly
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
 from iotfunctions.enginelog import EngineLogging
@@ -50,7 +50,7 @@ entity = EntityType(entity_name,db,
                     Column('TEMPERATURE',Float()),
                     Column('PRESSURE',Float()),
                     Column('VOLUME', Float()),
-                    WeatherHTTPPreload(request='GET',
+                    SimpleAnomaly(request='GET',
                                     url='internal_test',
                                     output_item = 'http_preload_done'),
                     bif.PythonExpression(expression='df["TEMPERATURE"]*df["PRESSURE"]',
@@ -67,7 +67,7 @@ To also register the functions and constants associated with the entity type, sp
 'publish_kpis' = True.
 '''
 entity.register(raise_error=False)
-db.register_functions([WeatherHTTPPreload])
+db.register_functions([SimpleAnomaly])
 
 '''
 To test the execution of kpi calculations defined for the entity type locally

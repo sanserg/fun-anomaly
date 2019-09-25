@@ -2,11 +2,11 @@ import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
 from iotfunctions import bif
-from custom.functions import SimpleAnomaly
+from ai.functions import SimpleAnomaly
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
 from iotfunctions.enginelog import EngineLogging
-from custom import settings
+from ai import settings
 
 EngineLogging.configure_console_logging(logging.DEBUG)
 
