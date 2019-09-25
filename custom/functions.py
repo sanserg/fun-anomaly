@@ -3,8 +3,7 @@ from sklearn import metrics
 from iotfunctions import bif
 from iotfunctions.ui import UIMultiItem, UISingle ,UISingleItem, UIFunctionOutSingle, UIFunctionOutMulti
 from iotfunctions.base import BaseRegressor, BaseClassifier
-#from iotfunctions.bif import AlertOutOfRange
-#from iotfunctions.bif import AlertHighValue
+from iotfunctions.bif import AlertHighValue
 
 
 logger = logging.getLogger(__name__)
