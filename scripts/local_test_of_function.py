@@ -1,7 +1,7 @@
 import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
-#from iotfunctions import bif
+from iotfunctions import bif
 from custom.functions import SimpleAnomaly
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
@@ -41,9 +41,10 @@ db = Database(credentials = credentials)
 To do anything with IoT Platform Analytics, you will need one or more entity type.
 You can create entity types through the IoT Platform or using the python API as shown below.
 The database schema is only needed if you are not using the default schema. You can also rename the timestamp.
-
+'''
 entity_name = 'CarlosSystem'
 
+'''
 entity = EntityType(entity_name,db,
                     Column('TURBINE_ID',String(50)),
                     Column('TEMPERATURE',Float()),
@@ -89,7 +90,7 @@ lake. Instead kpi data is written to the local filesystem in csv form.
 view entity data
 '''
 print ( "Read Table of new  entity" )
-df = db.read_table(table_name=entity_name, schema=db_schema)
-print(df.head())
+#df = db.read_table(table_name=entity_name, schema=db_schema)
+#print(df.head())
 
 print ( "Done registering  entity" )

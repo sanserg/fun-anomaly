@@ -8,7 +8,9 @@ from iotfunctions.bif import AlertHighValue
 
 logger = logging.getLogger(__name__)
 
-PACKAGE_URL = 'git@github.com:fe01134/fun-anomaly.git'
+PACKAGE_URL = 'git+https://github.com/fe01134/fun-anomaly@'
+
+
 _IS_PREINSTALLED = False
 
 class SimpleAnomaly(BaseRegressor):
