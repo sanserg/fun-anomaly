@@ -1,8 +1,8 @@
 import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
-from iotfunctions import bif
-from custom.functions import WeatherHTTPPreload
+#from iotfunctions import bif
+from custom.functions import SimpleAnomaly
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
 from iotfunctions.enginelog import EngineLogging
@@ -41,14 +41,14 @@ db = Database(credentials = credentials)
 To do anything with IoT Platform Analytics, you will need one or more entity type.
 You can create entity types through the IoT Platform or using the python API as shown below.
 The database schema is only needed if you are not using the default schema. You can also rename the timestamp.
-'''
+
 entity_name = 'CarlosSystem'
 
 entity = EntityType(entity_name,db,
                     Column('TURBINE_ID',String(50)),
                     Column('TEMPERATURE',Float()),
                     Column('PRESSURE',Float()),
-                    WeatherHTTPPreload( username = BI_USERNAME,
+                    SimpleAnomaly( username = BI_USERNAME,
                                     password = BI_PASSWORD,
                                     request='GET',
                                     url="https://turbine-simulator.mybluemix.net/v1/api/reading",
@@ -59,7 +59,7 @@ entity = EntityType(entity_name,db,
                       '_timestamp' : 'evt_timestamp',
                       '_db_schema' : db_schema
 })
-
+'''
 
 '''
 When creating an EntityType object you will need to specify the name of the entity, the database
@@ -72,8 +72,8 @@ To also register the functions and constants associated with the entity type, sp
 #entity.register(raise_error=False)
 
 # You must unregister_functions if you change the mehod signature or required inputs.
-#db.unregister_functions(["WeatherHTTPPreload"])
-db.register_functions([WeatherHTTPPreload])
+#db.unregister_functions(["SimpleAnomaly"])
+db.register_functions([SimpleAnomaly])
 
 '''
 To test the execution of kpi calculations defined for the entity type locally

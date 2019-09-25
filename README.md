@@ -149,7 +149,7 @@ git push origin master
 ```
 * Add function to the Entity Type that you created earlier that has your metrics data to run anomaly function on.
 ```
-Explore > Entity Types > Buildings > Add Data > Search on WeatherHTTPPreload
+Explore > Entity Types > Buildings > Add Data > Search on SimpleAnomaly
 ```
 ![Select function ](./images/create_new_data.png)
 
@@ -161,6 +161,11 @@ b
 C
 ```
 ![credentials](./images/function-tenant.png)
+
+* Register you function in the catalog using your name instead of SimpleAnomaly using the test local function.  Comment out the other code in function as nee
+```
+db.register_functions([SimpleAnomaly])
+```
 
 ## 4. Update Function
 * Push function code changes to Github.

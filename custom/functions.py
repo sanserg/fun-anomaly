@@ -1,8 +1,9 @@
 import logging
 from sklearn import metrics
-from .base import BaseRegressor, BaseClassifier
-from .bif import AlertHighValue
-from .ui import UIMultiItem, UISingle ,UISingleItem, UIFunctionOutSingle, UIFunctionOutMulti
+from iotfunctions.base import BaseRegressor, BaseClassifier
+from iotfunctions import bif
+from iotfunctions.bif import AlertHighValue
+from iotfunctions.ui import UIMultiItem, UISingle ,UISingleItem, UIFunctionOutSingle, UIFunctionOutMulti
 
 logger = logging.getLogger(__name__)
 
