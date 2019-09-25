@@ -1,12 +1,12 @@
-# Monitoring IOT Asset Data in Dashboards using Python
+# Monitoring IOT Asset Data for Anomalies Using Python Functions and Dashboards
 
-In this Code Pattern we will publish IOT Asset Data from Building Insights into Watson IOT Platform using a Python analytics function.  The data will allow us to then monitor individual building energy consumption and compare the performance of different buildings.   The monitoring dahsboards allow us to see energy consumption trends over time.  This HTTP preload function could easily be modified to integrate to other IOT Platforms or data sources to allow you to quickly monitor your assets.
+This sample function uses a regression model to predict the value of one or more output  variables. It compares the actual value to the prediction and generates an alert when the difference between the actual and predicted value is outside of a threshold.
 
 When the reader has completed this Code Pattern, they will understand how to:
 
-* Understand how this Python function can load data into  [Watson IOT Platform Analytics](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html) from any REST Service
+* Understand how deploy this Python anomaly function  into  [Watson IOT Platform Analytics](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html)
 * Build a dashboard using [Watson IOT Platform Monitoring Dashboard](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html) to monitor, visualize, and analyze IOT asset data from [IBM TRIRIGA Building Insights](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html)
-* Deploy, schedule and run this Python Functions in [Watson IOT Platform Analytics](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html) to retrieve data from Building Insights every 5 minutes.
+* Deploy, schedule and run this anomaly Python Functions in [Watson IOT Platform Analytics](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html) to score metrics every 5 minutes to see if there has been an anomaly.
 
 The intended audience for this Code Pattern is application developers and other stakeholders who wish to utilize the power of Watson IOT Platform Monitoring Dashboard to quickly and effectively monitor any asset to ensure availability, utilization and efficiency.
 
@@ -16,9 +16,7 @@ The intended audience for this Code Pattern is application developers and other 
 
 * [Watson IOT Platform Analytics](https://www.ibm.com/support/knowledgecenter/en/SSQP8H/iot/analytics/as_overview.html).   Sign up for an account [here](https://www.ibm.com/us-en/marketplace/internet-of-things-cloud/purchase)  An IBM Software as A Service that allows you to register devices, collect IOT Data and build IOT applications.
 
-* [Building Insights](https://jupyter.org/):An IBM Software as A Service that allows you to manage your buildings. By using AI, Contextual Models, IoT and other sensor data, IBM TRIRIGA Building Insights consolidates, stores, and analyzes your data in real time, seamlessly improving building operations and giving you unique insights.  
-
-* [Monitoring Dashboard]() Code free dashboards that allow you to monitor a variety of types of assets.  Use out of the box cards to visualize timeseries data and other asset properties.
+* [Monitoring Dashboard](https://jupyter.org/) Code free dashboards that allow you to monitor a variety of types of assets.  Use out of the box cards to visualize timeseries data and other asset properties.
 
 * [BI_HTTPPreload](https://ibm.biz/BdzvyX) Python functions that allow you to collect IOT asset and sensor data from other IOT Platforms or data sources that can then be used to quickly monitor your assets in Watson IOT Platform Analytics.
 
@@ -27,7 +25,7 @@ The intended audience for this Code Pattern is application developers and other 
 
 1. Setup your Python development environment
 2. Create an Entity Type in Watson IOT Platform
-3. Deploy function
+3. Deploy Anomaly function
 4. Schedule the function to collect asset data
 5. Create a Monitoring Dashboard to manage the asset
 6. View the Monitoring Dashboard with Building Energy Consumption
@@ -101,7 +99,7 @@ source bin/activate
 * Install dependencies in from requirements.txt file on next:
 ```
 git clone
-cd fun-weather
+cd fun-anomaly
 pip install -r requirements.txt
 ```
 * Install Watson IOT Functions dependencies:
@@ -119,10 +117,6 @@ python ./scripts/local_test_of_function.py
 
 ## 2. Create an entity type
 
-* Copy template.env and modify it to reflect your Building Insights Credentials
-```
-cp ./custom/template.env ./custom/.env
-```
 * Copy your Watson IOT Platform Service credentials into a credentials.json file
 ```
 browse to your Watson IOT Platform Analytics service
@@ -131,16 +125,16 @@ Explore > Usage > Watson IOT Platform Analytics > Copy to clipboard
 ```
 ![credentials](./images/watson_iot_credentials.png)
 
-* Modify your .custom/function.py to reflect your PACKAGE_URL to reflect your forked function Github repository:
+* Modify your .custom/function.py to reflect your PACKAGE_URL to reflect your forked function Github repository name.  Repace fun-anomaly with your own repo name.
 ```
-PACKAGE_URL = 'git+https://github.com/fe01134/fun-weather@'
+PACKAGE_URL = 'git+https://github.com/fe01134/fun-anomaly@'
 
-# Change the class name if someone else has already published a function with the same name in your tenant function catalog.
+# Change the class name "SimpleAnomaly" if someone else has already published a function with the same name in your tenant function catalog.
 
-class WeatherHTTPPreload(BasePreload):
+class SimpleAnomaly(BaseRegressor):
 ```
 
-* Invoke local_test_of_function.py PYTHONPATH to create your Buildings Entity Type and execute your BI_HTTPPreload function to get data from Building Insights:
+* Invoke local_test_of_function.py PYTHONPATH to create your Buildings Entity Type and execute your class SimpleAnomaly function to get data from Building Insights:
 ```
 python ./scripts/local_test_of_function.py
 ```
@@ -153,18 +147,18 @@ git add ./custom/functions.py
 git commit -m "my function changes"
 git push origin master
 ```
-* Add function to your new Buildings Entity Type
+* Add function to the Entity Type that you created earlier that has your metrics data to run anomaly function on.
 ```
 Explore > Entity Types > Buildings > Add Data > Search on WeatherHTTPPreload
 ```
 ![Select function ](./images/create_new_data.png)
 
-* Set values for your Building Insights tenant and credentials or other IOT Device REST Service.
+* Set values for your anomaly function.
 ```
-URL = enter your Building Insights Service tenant_ID
-username	= enter your Building Insights user id
-password = enter your Building Insights password
-request  = Select Get from drop down
+URL = enter
+a
+b
+C
 ```
 ![credentials](./images/function-tenant.png)
 
@@ -175,7 +169,7 @@ git add ./custom/functions.py
 git commit -m "my function changes"
 git push origin master
 ```
-* Update function input arguments in your Buildings Entity Type
+* Update function input arguments in your created Entity Type to reflect your metrics to evaluate.
 ```
 Explore > Entity Types > Buildings > output_item > configure > next > update
 ```
