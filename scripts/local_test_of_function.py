@@ -2,11 +2,11 @@ import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
 from iotfunctions import bif
-from ai.functions import SimpleAnomaly
+from anomaly.functions import SimpleAnomaly
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
 from iotfunctions.enginelog import EngineLogging
-from ai import settings
+from anomaly import settings
 
 EngineLogging.configure_console_logging(logging.DEBUG)
 
@@ -42,7 +42,7 @@ To do anything with IoT Platform Analytics, you will need one or more entity typ
 You can create entity types through the IoT Platform or using the python API as shown below.
 The database schema is only needed if you are not using the default schema. You can also rename the timestamp.
 '''
-entity_name = 'CarlosSystem'
+#entity_name = 'EnergySystemModel02'
 
 '''
 entity = EntityType(entity_name,db,
