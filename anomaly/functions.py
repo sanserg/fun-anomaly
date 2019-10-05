@@ -13,7 +13,7 @@ PACKAGE_URL = 'git+https://github.com/fe01134/fun-anomaly@'
 
 _IS_PREINSTALLED = False
 
-class SimpleAnomaly(BaseRegressor):
+class AnomalyDetector(BaseRegressor):
 
     '''
     Sample function uses a regression model to predict the value of one or more output

@@ -2,7 +2,7 @@ import json
 import logging
 from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, func
 from iotfunctions import bif
-from anomaly.functions import SimpleAnomaly
+from anomaly.functions import AnomalyDetector
 from iotfunctions.metadata import EntityType
 from iotfunctions.db import Database
 from iotfunctions.enginelog import EngineLogging
@@ -49,7 +49,7 @@ entity = EntityType(entity_name,db,
                     Column('TURBINE_ID',String(50)),
                     Column('TEMPERATURE',Float()),
                     Column('PRESSURE',Float()),
-                    SimpleAnomaly( username = BI_USERNAME,
+                    AnomalyDetector( username = BI_USERNAME,
                                     password = BI_PASSWORD,
                                     request='GET',
                                     url="https://turbine-simulator.mybluemix.net/v1/api/reading",
@@ -73,8 +73,8 @@ To also register the functions and constants associated with the entity type, sp
 #entity.register(raise_error=False)
 
 # You must unregister_functions if you change the mehod signature or required inputs.
-#db.unregister_functions(["SimpleAnomaly"])
-db.register_functions([SimpleAnomaly])
+#db.unregister_functions(["AnomalyDetector"])
+db.register_functions([Anomaly_Regression])
 
 '''
 To test the execution of kpi calculations defined for the entity type locally
