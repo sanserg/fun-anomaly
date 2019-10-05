@@ -74,7 +74,7 @@ To also register the functions and constants associated with the entity type, sp
 
 # You must unregister_functions if you change the mehod signature or required inputs.
 #db.unregister_functions(["AnomalyDetector"])
-db.register_functions([Anomaly_Regression])
+db.register_functions([AnomalyDetector])
 
 '''
 To test the execution of kpi calculations defined for the entity type locally
