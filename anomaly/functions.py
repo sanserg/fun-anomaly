@@ -52,11 +52,12 @@ class AnomalyDetector(BaseRegressor):
             logging.warning('execute df prediction absolute %s ' %df[prediction] )
 
             df['_diff_'] = (df[t] - df[prediction]).abs()
+            logging.warning('execute df[_diff_] %s ' %df['_diff_'] )
             alert = AlertHighValue(input_item = '_diff_',
                                       upper_threshold = self.threshold,
                                       alert_name = self.alerts[i])
             alert.set_entity_type(self.get_entity_type())
-            logging.warning('execute df diff %s ' %df['_diff_'])
+            logging.warning('execute alert %s ' %alert)
             logging.warning('execute get entity type %s ' %self.get_entity_type() )
             df = alert.execute(df)
             logging.warning('execute returning df  ------')
