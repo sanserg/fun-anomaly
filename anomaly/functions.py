@@ -30,39 +30,37 @@ class AnomalyDetector(BaseRegressor):
     def __init__(self, features, targets, threshold,
                  predictions=None, alerts = None):
         super().__init__(features=features, targets = targets, predictions=predictions)
-        logging.debug('init features %s ' %features)
-        logging.debug('init targets %s ' %targets)
-        logging.debug('init predictions %s ' %predictions)
-        logging.debug('init alerts %s ' %alerts)
+        logging.warning('init features %s ' %features)
+        logging.warning('init targets %s ' %targets)
+        logging.warning('init predictions %s ' %predictions)
+        logging.warning('init alerts %s ' %alerts)
 
         if alerts is None:
             alerts = ['%s_alert' %x for x in self.targets]
         self.alerts = alerts
         self.threshold = threshold
-        logging.debug('init exiting alerts %s ' %alerts)
-        logging.debug('init exiting threshold %s ' %threshold)
+        logging.warning('init exiting alerts %s ' %alerts)
+        logging.warning('init exiting threshold %s ' %threshold)
 
     def execute(self,df):
 
         df = super().execute(df)
         for i,t in enumerate(self.targets):
             prediction = self.predictions[i]
-            logging.debug('execute individual prediction %s ' %prediction)
-            print('execute individual prediction')
-            print(prediction)
-            logging.debug('execute df t %s ' %df[t])
-            logging.debug('execute df prediction absolute %s ' %df[prediction] )
+            logging.warning('execute individual prediction %s ' %prediction)
+            logging.warning('execute df t %s ' %df[t])
+            logging.warning('execute df prediction absolute %s ' %df[prediction] )
 
             df['_diff_'] = (df[t] - df[prediction]).abs()
             alert = AlertHighValue(input_item = '_diff_',
                                       upper_threshold = self.threshold,
                                       alert_name = self.alerts[i])
             alert.set_entity_type(self.get_entity_type())
-            logging.debug('execute df diff %s ' %df['_diff_'])
-            logging.debug('execute get entity type %s ' %self.get_entity_type() )
+            logging.warning('execute df diff %s ' %df['_diff_'])
+            logging.warning('execute get entity type %s ' %self.get_entity_type() )
             df = alert.execute(df)
-            logging.debug('execute returning df  ------')
-            logging.debug( df.head() )
+            logging.warning('execute returning df  ------')
+            logging.warning( df.head() )
         return df
 
     @classmethod
