@@ -4,7 +4,9 @@ from iotfunctions import bif
 from iotfunctions.ui import UIMultiItem, UISingle ,UISingleItem, UIFunctionOutSingle, UIFunctionOutMulti
 from iotfunctions.base import BaseRegressor, BaseClassifier
 from iotfunctions.bif import AlertHighValue
+from iotfunctions.enginelog import EngineLogging
 
+EngineLogging.configure_console_logging(logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
