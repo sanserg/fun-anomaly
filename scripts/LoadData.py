@@ -75,6 +75,8 @@ if __name__ == "__main__":
             entity_type_dict[node] = {}
             metrics_dict = {}
             entity_type_dict[node]['metrics'] = metrics_dict
+            metrics_type_dict = {}
+            entity_type_dict[node]['metrics'] = metrics_type_dict
 
             with open(inputfile, mode='r') as csv_file:
                 csv_reader = csv.DictReader(csv_file)
@@ -92,12 +94,13 @@ if __name__ == "__main__":
                     datatype = row["DataType"]
                     #print( "path === " + path  + "node === " + node)
                     if node == path and value != None:
-                        #print("for node " + node + " adding key metric" + name + " to node" )
+                        print("for node " + node + " adding key metric" + name +  " datatype"+ datatype)
                         metrics_dict[name] = value
+                        metrics_type_dict[name] = datatype
 
                 i = 0
                 for item in  metrics_dict.items():
-                    print ("metric key = " +  item[i] + "       value  " + metrics_dict.get(item[i])  )
+                    print ("metric key = " +  item[i] + "       value  " + metrics_dict.get(item[i])  + "       DataType  " + str(metrics_type_dict.get(item[i])) )
             # Assign metrics to Entity Type entity_dict[node]['metrics']=metrics_dict
             #print ("Assign metric to Entity = " +  node  )
             #entity_type_dict[node]['metrics'] = metrics_dict
