@@ -18,11 +18,11 @@ EngineLogging.configure_console_logging(logging.DEBUG)
 
 #with open('credentials.json', encoding='utf-8') as F:
 db_schema = 'bluadmin' #  set if you are not using the default
-with open('credentials_Monitor-Demo.json', encoding='utf-8') as F:
-#    credentials = json.loads(F.read())
+with open('credentials_beta-2.json', encoding='utf-8') as F:
+    credentials = json.loads(F.read())
 #db_schema = 'dash100462'  # replace if you are not using the default schema
 #with open('credentials_dev2.json', encoding='utf-8') as F:
-    credentials = json.loads(F.read())
+#    credentials = json.loads(F.read())
 
 '''
 Developing Test Pipelines
