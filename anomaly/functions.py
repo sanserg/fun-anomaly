@@ -10,7 +10,7 @@ EngineLogging.configure_console_logging(logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
-PACKAGE_URL = 'git+https://github.com/fe01134/fun-anomaly@'
+PACKAGE_URL = 'git+https://github.com/sanserg/fun-anomaly@'
 
 
 _IS_PREINSTALLED = False
